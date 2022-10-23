@@ -189,7 +189,7 @@ or
 
 | Event | Description |
 |-------|-------------|
-| **chat.set** | Send a list of all loaded chats.</br>* This event may repeat itself according to the number of chats you have;</br>⚠️So beware⚠️: all your chats may not load on the first occurrence of the event.</br>* This event occurs only once |
+| **chat.set** | Send a list of all loaded chats.</br> This event may repeat itself according to the number of chats you have;</br>⚠️So beware⚠️: all your chats may not load on the first occurrence of the event.</br> This event occurs only once |
 | **chats.upsert** | Sends any new chat information |
 | **chats.update** | Informs you when the chat is updated |
 | **chats.delete** | Informs you when the chat is deleted |
@@ -281,8 +281,8 @@ or
 
 | Event | Description |
 |-------|-------------|
-| **contacts.set** | Sends the list of contacts loaded</br>* This information may take some time to arrive depending on the size of your contact list.</br>For example: a list of 200 contacts, it can take up to 45 seconds to load all contacts.</br>This event occurs only once |
-| **contacts.upsert** | * Get the list of all contacts, with additional information;</br>*Receive notification of each new contact created |
+| **contacts.set** | Sends the list of contacts loaded</br> This information may take some time to arrive depending on the size of your contact list.</br> For example: a list of 200 contacts, it can take up to 45 seconds to load all contacts.</br>This event occurs only once |
+| **contacts.upsert** | Get the list of all contacts, with additional information;</br> Receive notification of each new contact created |
 | **contacts.update** | Informs you when the contact is updated |
 
 ### contacts.set
@@ -342,7 +342,7 @@ or
 | **new.message** | Tells you when a message is received |
 | **message.delete** | Informs when a message is deleted |
 | **message.update** | Tells you when a message is updated |
-| **messages.set** | Sends a list of all your messages uploaded on whatsapp.</br>* This event may repeat itself according to the number of messages you have.</br>⚠️So beware⚠️: all your messages may not load on the first occurrence of the event.<br>* This event occurs only once |
+| **messages.set** | Sends a list of all your messages uploaded on whatsapp.</br> This event may repeat itself according to the number of messages you have.</br> ⚠️So beware⚠️: all your messages may not load on the first occurrence of the event.<br> This event occurs only once |
 | **status.broadcast** | Notifies when a contact publishes a Status |
 
 ### new.message
@@ -419,7 +419,7 @@ or
 |-------|-------------|
 | **send.message:START** | Indicates the start of the submission process |
 | **send.message:PROCESSING** | Informs the processing of sending messages from 0 to 100% |
-| **send.message:COMPLETED** | Notifies the completion of the submission process.</br>* After completion, the process is persisted in the database. |
+| **send.message:COMPLETED** | Notifies the completion of the submission process.</br> After completion, the process is persisted in the database. |
 
 ### send.message:START
 ```ts
