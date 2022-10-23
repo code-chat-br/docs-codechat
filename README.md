@@ -4,7 +4,7 @@
 
 [![Telegram](https://img.shields.io/badge/Group-Telegram-%2333C1FF)](https://t.me/codechatBR)
 [![Whatsapp](https://img.shields.io/badge/WhatsApp-message-%2322BC18)](https://api.whatsapp.com/send?phone=5531995918699)
-[![n8n](https://img.shields.io/badge/n8n--node-codechat-%3BB855)](https://github.com/code-chat-br/n8n-node-codechat)
+[![n8n](https://img.shields.io/badge/n8n--node-codechat-%FF0000)](https://github.com/code-chat-br/n8n-node-codechat)
 [![npm](https://img.shields.io/badge/npm-8.16.0-lightgrey)](https://docs.npmjs.com/)
 [![node](https://img.shields.io/badge/node-^16.10.0-%3C873A)](https://nodejs.org/)
 [![nvm](https://img.shields.io/badge/nvm-nodejs-%3C873A)](https://github.com/nvm-sh/nvm#installing-and-updating)
