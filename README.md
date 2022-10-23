@@ -441,11 +441,11 @@ or
 {
   "event": "send.message:PROCESSING",
   "data": {
-    "messageId": "BAE54AB18FAFB0BF",
     "instance": {
       "name": "codechat"
     },
     "queue": {
+      "messageId": "BAE54AB18FAFB0BF",
       "progress": 50,
       "queueId": "5b3c8fdf-e206-4fb8-b83e-0c0eb927d45b"
     }
@@ -457,10 +457,6 @@ or
 {
   "event": "send.message:COMPLETED",
   "data": {
-    "messageIds": [
-      "BAE54AB18FAFB0BF",
-      "BAE56B89E06D6369"
-    ],
     "instance": {
       "name": "codechat"
     },
@@ -471,7 +467,12 @@ or
         "jids": [
           "123@s.whatsapp.net",
           "456@s.whatsapp.net"
-        ]
+        ],        
+        "messageIds": [
+          "BAE54AB18FAFB0BF",
+          "BAE56B89E06D6369"
+        ],
+        "message": { ... }
       }
     }
   }
