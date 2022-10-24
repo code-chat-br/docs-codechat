@@ -461,8 +461,8 @@ or
       "name": "codechat"
     },
     "queue": {
-      "progress": 100,
       "queueId": "5b3c8fdf-e206-4fb8-b83e-0c0eb927d45b",
+      "progress": 100,
       "data": {
         "jids": [
           "123@s.whatsapp.net",
