@@ -333,8 +333,8 @@ or
 
 ## Message
 
-[New Message](#newmessage)
-[Message Update](#messageupdate)
+[New Message](#newmessage)</br>
+[Message Update](#messageupdate)</br>
 [Status Broadcast](#statusbroadcast)
 
 | Event | Description |
@@ -411,8 +411,8 @@ or
 ```
 ## Send Message
 
-[Send Message START](#sendmessagestart)
-[Send Message PROCESSING](#sendmessageprocessing)
+[Send Message START](#sendmessagestart)</br>
+[Send Message PROCESSING](#sendmessageprocessing)</br>
 [Send Message COMPLETED](#sendmessagecompleted)
 
 | Event | Description |
