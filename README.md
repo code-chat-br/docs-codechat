@@ -115,8 +115,9 @@ $npm run start:prod
 ```ts
 {
   "event": "load.instance",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
-    "wuid": "553195918699@s.whatsapp.net",
+    "wuid": "123@s.whatsapp.net",
     "userName": "codechat",
     "profilePictureUrl": "https://pps.whatsapp.net/v/t61.24694-24/309630409_169440919083513_8519511749370987405_n.jpg?ccb=11-4&oh=01_AdSYEc_iBpEC0fDTrQifuGRSFo35WUHyZItGt8izEvOLRg&oe=636177F7",
     "isBusiness": true,
@@ -129,6 +130,7 @@ $npm run start:prod
 ```ts
 {
   "event": "connections.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "instance": {
       "name": "codechat",
@@ -143,6 +145,7 @@ $npm run start:prod
 ```ts
 {
   "event": "qrcode.updated",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "name": "codechat",
     "qrcode": {
@@ -156,6 +159,7 @@ $npm run start:prod
 ```ts
 {
   "event": "presence.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "jid": "123@s.whatsapp.net",
     "presences": {
@@ -171,6 +175,7 @@ or
 ```ts
 {
   "event": "presence.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "jid": "123@s.whatsapp.net",
     "presences": {
@@ -198,6 +203,7 @@ or
 ```ts
 {
   "event": "chats.set",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "participant": [],
@@ -210,6 +216,7 @@ or
 ```ts
 {
   "event": "chats.set",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "participant": [],
@@ -254,6 +261,7 @@ or
 ```ts
 {
   "event": "chats.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "id": "123@s.whatsapp.net",
@@ -267,6 +275,7 @@ or
 ```ts
 {
   "event": "chats.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
    "123@s.whatsapp.net"
   ]
@@ -289,6 +298,7 @@ or
 ```ts
 {
   "event": "contacts.set",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "phoneNumber": "123",
@@ -304,6 +314,7 @@ or
 ```ts
 {
   "event": "contacts.set",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "contactName": "name",
@@ -319,6 +330,7 @@ or
 ```ts
 {
   "event": "contacts.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": [
     {
       "contactName": "update name",
@@ -349,6 +361,7 @@ or
 ```ts
 {
   "event": "new.message",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "header": {
       "messageId": "0542F8EF37C48548301A9C957C33EB17",
@@ -372,6 +385,7 @@ or
 ```ts
 {
   "event": "message.update",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "update": {
       "status": "DELIVERY_ACK" | "READ",
@@ -392,6 +406,7 @@ or
 ```ts
 {
   "event": "status.broadcast",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "header": {
       "messageId": "250256CE0E92C229DB0F2508F1F09C0A",
@@ -425,6 +440,7 @@ or
 ```ts
 {
   "event": "send.message:START",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "instance": {
       "name": "codechat"
@@ -440,6 +456,7 @@ or
 ```ts
 {
   "event": "send.message:PROCESSING",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "instance": {
       "name": "codechat"
@@ -456,6 +473,7 @@ or
 ```ts
 {
   "event": "send.message:COMPLETED",
+  "owner": "5531900000000@s.whatsapp.net",
   "data": {
     "instance": {
       "name": "codechat"
