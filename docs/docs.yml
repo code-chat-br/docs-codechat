@@ -1,0 +1,3211 @@
+openapi: 3.0.0
+paths:
+  /codechat/instance/connectionSettings:
+    post:
+      operationId: InstanceController_addSettings
+      summary: Connection Settings.
+      description: "## Connection Settings."
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectionSettingsModel"
+      responses:
+        "201":
+          description: "### Returns your created instance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstanceWAModel"
+      tags:
+        &a1
+        - Instance Controller
+      security:
+        &a2
+        - Authorization: []
+  /codechat/instance/exportQrcodeBase64:
+    get:
+      operationId: InstanceController_exportQrcodBase64
+      summary: Export qrcode as bse64
+      description: |-
+        ### ExporteQrCodeBase64
+
+         Use this route to connect with whatsapp through a qrcode
+      parameters: []
+      responses:
+        "201":
+          description: "### Returns the qr code of the instance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrCodeModel"
+      tags: *a1
+      security: *a2
+  /codechat/instance/fetchInfo:
+    get:
+      operationId: InstanceController_frtchInstanceInfo
+      summary: Retrieve instance information
+      description: "## Authentication required"
+      parameters: []
+      responses:
+        "201":
+          description: "### Returns your instance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstanceWAModel"
+      tags: *a1
+      security: *a2
+  /codechat/instance/fetchConnectionStatus:
+    get:
+      operationId: InstanceController_fetchConnectionStatus
+      summary: Retrieve Connection Status
+      description: "## FetchConnectionStatus"
+      parameters: []
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionUpdate"
+      tags: *a1
+      security: *a2
+  /codechat/instance/fetchPrivacySettings:
+    get:
+      operationId: InstanceController_fetchPrivacySettings
+      summary: Retrieve Privacy Settings
+      description: "## FetchPrivacySettings"
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags: *a1
+      security: *a2
+  /codechat/instance/updateProfilePicture:
+    put:
+      operationId: InstanceController_updateProfilePcture
+      summary: Update Profile Picture
+      description: "## UpdateProfilePicure"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfilePcture"
+      responses:
+        "200":
+          description: ""
+      tags: *a1
+      security: *a2
+  /codechat/instance/updateProfileName:
+    put:
+      operationId: InstanceController_updateProfileName
+      summary: Update Profile Name
+      description: "## UpdateProfileName"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileName"
+      responses:
+        "200":
+          description: ""
+      tags: *a1
+      security: *a2
+  /codechat/instance/logout:
+    delete:
+      operationId: InstanceController_logoutInstance
+      summary: Logout
+      description: "## Logging out of whatsapp"
+      parameters: []
+      responses:
+        "200":
+          description: Complete logout
+        "500":
+          description: Logout error
+      tags: *a1
+      security: *a2
+  /codechat/instance/delete:
+    delete:
+      operationId: InstanceController_deleteInstance
+      summary: Delete instance
+      description: "## Removing instance from memory"
+      deprecated: true
+      parameters: []
+      responses:
+        "200":
+          description: Complete instance deletion
+        "500":
+          description: Error deleting instance
+      tags: *a1
+      security: *a2
+  /codechat/instance/viewQrcode:
+    get:
+      operationId: ViewsController_renderViewQrcode
+      summary: Html from view qrcode
+      description: "### Returns the html of the qrcode display page"
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags:
+        - Instance Controller - View QrCode
+      security:
+        - Authorization: []
+  /codechat/webhook/set:
+    put:
+      operationId: WebhookController_setWebhook
+      summary: Define a webhook for this instance
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookModel"
+      responses:
+        "200":
+          description: ""
+      tags:
+        &a3
+        - Webhook Controller
+      security:
+        &a4
+        - Authorization: []
+  /codechat/webhook/events:
+    put:
+      operationId: WebhookController_defineEvents
+      summary: Define the events to be monitored
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookEvents"
+      responses:
+        "200":
+          description: ""
+      tags: *a3
+      security: *a4
+  /codechat/webhook/fetch:
+    get:
+      operationId: WebhookController_fetchWebhook
+      summary: Retrieve the defined webhook
+      parameters: []
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookModel"
+      tags: *a3
+      security: *a4
+  /codechat/message/sendText:
+    post:
+      operationId: SendeMessageController_sendTextMessage
+      summary: Message text to be sent
+      description: "## TextMessage"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendTextModel"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags:
+        &a5
+        - Send Message Controller
+      security:
+        &a6
+        - Authorization: []
+  /codechat/message/sendButtons:
+    post:
+      operationId: SendeMessageController_sendButtonsMessage
+      summary: Message common buttons to be sent
+      description: "## CommonButtons\r
+
+        \r
+
+        Message with common and clickable buttons. \r
+
+        \r
+
+        You can also upload media embedded in the template. This field
+        is optional, but its internal parameters are mandatory."
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommonButtons"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  buttonsMessage:
+                    title: string
+                    description: string
+                    buttons:
+                      - displayText: string
+                        buttonId: string
+                    footerText: string
+                    mediaMessage:
+                      mediaType: string
+                      fileName: string
+                      urlOrBase64: string
+                  options:
+                    delay: 0
+                    quoted:
+                      messageId: string
+                    mentions:
+                      everyOne: false
+                      mentioned:
+                        - string
+              full:
+                summary: Full Example
+                value:
+                  numbers:
+                    - "553190008888"
+                    - "552188882222"
+                  buttonsMessage:
+                    title: Title Button
+                    description: Description button
+                    buttons:
+                      - displayText: Text Button 1
+                        buttonId: button-id-01
+                      - displayText: Text Button 2
+                        buttonId: button-id-02
+                    footerText: string
+                    mediaMessage:
+                      mediaType: image
+                      fileName: image.png
+                      urlOrBase64: https://img.freepik.com/free-vector/green-abstract-geometric-wallpaper_52683-29623.jpg
+                  options:
+                    delay: 1200
+              minimal:
+                summary: Minimal properties
+                value:
+                  numbers:
+                    - "553190008888"
+                  buttonsMessage:
+                    title: Title Button
+                    description: Description button
+                    buttons:
+                      - displayText: Text Button 1
+                        buttonId: button-id-01
+                      - displayText: Text Button 2
+                        buttonId: button-id-02
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendTemplate:
+    post:
+      operationId: SendeMessageController_sendTemplateMessage
+      summary: Message template to be sent
+      description: "## ⚠️ Heads up ⚠️\r
+
+        <font size='3'>This model is incompatible with IOS, its use is
+        not recommended. For production purposes, use **sendButtons**.</font>\r
+
+        \r
+
+        \r
+
+        ## TemplateMessage\r
+
+        \r
+
+        The templateMessage is a special type of message that allows you
+        to send a message with a special buttons like quickReply, urlButton and
+        callButton.\r
+
+        \r
+
+        ### How to send a message?\r
+
+        You need to specify the type of button you want to send to the
+        recipient and fill in all required parameters.\r
+
+        \r
+
+        The button types are:\r
+
+        \r
+
+        ```replyButton``` - Requires **payload** property\r
+
+        \r
+
+        ```urlButton``` - Requires **payload** property\r
+
+        \r
+
+        ```callButton``` - Requires **payload** property\r
+
+        \r
+
+        In the payload field, you must enter the value corresponding to
+        the button type:</br>\r
+
+        Ex.:\r
+
+        \r
+
+        ```ts\r
+
+        replyButton: payload -> a unique id for the button\r
+
+        urlButton: payload -> a valid url\r
+
+        callButton: payload -> a phone number\r
+
+        ```\r
+
+        ___\r
+
+        \r
+
+        You can also upload media embedded in the template. This field
+        is optional, but its internal parameters are mandatory.\r
+
+        \r
+
+        Follow the example below:\r
+
+        \r
+
+        ___\r
+
+        > ## ⚠️ Heads up ⚠️\r
+
+        >\r
+
+        > ### Buttons of the **callButton** and **urlButton** types must
+        come before the **replyButton** buttons, to avoid errors.\r
+
+        ___\r
+
+        \r
+
+        ```ts\r
+
+        {\r
+
+        \   numbers: ['5531999999999', '552188882222',
+        '553190008888'],\r
+
+        \   templateMessage: {\r
+
+        \      title: 'CodeChat Api',\r
+
+        \      dectription: 'Rest api for communication with WhatsApp'\r
+
+        \      buttons: [\r
+
+        \         {\r
+
+        \            buttonType: 'urlButton',\r
+
+        \            displayText: ' Go 🚀',\r
+
+        \            payload: 'https://github.com/code-chat-br',\r
+
+        \         },\r
+
+        \         {\r
+
+        \            buttonType: 'callButton',\r
+
+        \            displayText: '📞 Call Me',\r
+
+        \            payload: '+55 21 9 1100-2200',\r
+
+        \         },\r
+
+        \         {\r
+
+        \            buttonType: 'replyButton',\r
+
+        \            displayText: 'Reply 01',\r
+
+        \            payload: 'button-id-01',\r
+
+        \         },\r
+
+        \         {\r
+
+        \            buttonType: 'replyButton',\r
+
+        \            displayText: 'Reply 01',\r
+
+        \            payload: 'button-id-02',\r
+
+        \         },\r
+
+        \         {\r
+
+        \            buttonType: 'replyButton',\r
+
+        \            displayText: 'Reply 01',\r
+
+        \            payload: 'button-id-03',\r
+
+        \         },\r
+
+        \      ],\r
+
+        \      footerText: 'string',\r
+
+        \      mediaMessage: {\r
+
+        \         mediaType: 'image',\r
+
+        \         fileName: \"image.png\",\r
+
+        \         urlOrBase64:
+        'https://github.com/code-chat-br/whatsapp-api/blob/main/public/images/c\
+        over.png',\r
+
+        \      },\r
+
+        \   },\r
+
+        \   options: { delay: 1200 }\r
+
+        }\r
+
+        ```"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplateMessage"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  templateMessage:
+                    title: string
+                    description: string
+                    buttons:
+                      - buttonType: urlButton
+                        displayText: string
+                        payload: string
+                      - buttonType: callButton
+                        displayText: string
+                        payload: string
+                      - buttonType: replyButton
+                        displayText: string
+                        payload: string
+                    footerText: string
+                    mediaMessage:
+                      mediaType: string
+                      fileName: string
+                      urlOrBase64: string
+                  options:
+                    delay: 0
+                    quoted:
+                      messageId: string
+                    mentions:
+                      everyOne: false
+                      mentioned:
+                        - string
+              full:
+                summary: Full Example
+                value:
+                  numbers:
+                    - "5531999999999"
+                    - "552188882222"
+                    - "553190008888"
+                  templateMessage:
+                    title: CodeChat Api
+                    description: Rest api for communication with WhatsApp
+                    buttons:
+                      - buttonType: urlButton
+                        displayText: " Go 🚀"
+                        payload: https://github.com/code-chat-br
+                      - buttonType: callButton
+                        displayText: Call Me
+                        payload: +55 21 9 1100-2200
+                      - buttonType: replyButton
+                        displayText: Reply 01
+                        payload: button-id-01
+                      - buttonType: replyButton
+                        displayText: Reply 01
+                        payload: button-id-02
+                      - buttonType: replyButton
+                        displayText: Reply 01
+                        payload: button-id-03
+                    footerText: string
+                    mediaMessage:
+                      mediaType: image
+                      fileName: image.png
+                      urlOrBase64: https://img.freepik.com/free-vector/green-abstract-geometric-wallpaper_52683-29623.jpg
+                  options:
+                    delay: 1200
+              optional:
+                summary: Minimal properties
+                value:
+                  numbers:
+                    - "5531999999999"
+                  templateMessage:
+                    description: >-
+                      *Lorem Ipsum* is simply dummy text of the printing and typesetting
+                      industry.
+
+
+                      Lorem Ipsum has been
+                    buttons:
+                      - buttonType: replyButton
+                        displayText: Reply 01
+                      - buttonType: replyButton
+                        displayText: Reply 01
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendMedia:
+    post:
+      operationId: SendeMessageController_sendMediaMessage
+      summary: Media message to be sent
+      description: "## MediaMessage"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaMessage"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendFile:
+    post:
+      operationId: SendeMessageController_sendFileMessage
+      summary: Message with file to be sent
+      description: "## FileMessage"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - fileMessage
+                - numbers
+              properties:
+                fileMessage:
+                  type: string
+                  format: binary
+                caption:
+                  type: string
+                numbers:
+                  type: array
+                  items:
+                    type: string
+                options:
+                  type: object
+                  properties:
+                    delay:
+                      type: number
+                    quoted:
+                      type: object
+                      properties:
+                        messageId:
+                          type: string
+                    mentions:
+                      type: object
+                      properties:
+                        everyOne:
+                          type: boolean
+                        mentioned:
+                          type: array
+                          items:
+                            type: string
+      responses:
+        "201":
+          description: ""
+      tags: *a5
+      security: *a6
+  /codechat/message/sendWhatsAppAudio:
+    post:
+      operationId: SendeMessageController_sendWhatsappAudio
+      summary: Audio message to be sent
+      description: >-
+        ## AudioMessage
+
+
+        Send an audio in whatsapp format, It can be either a **url** or a **base64**.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AudioMessage"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendlocation:
+    post:
+      operationId: SendeMessageController_sendlocation
+      summary: Location message to be sent
+      description: "## LocationMessage\r
+
+        \r
+
+        ### Send simple location messages with built-in buttons.\r
+
+        \r
+
+        To send the location message, you need to inform at least the
+        longitude and latitude, according to the examples below.\r
+
+        \r
+
+        <hr>\r
+
+        \r
+
+        You can only send **one** type of inline buttons per message, if
+        you pass both types of buttons by parameter, the **commonButtons** type
+        will be disregarded."
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationMessage"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  locationMessage:
+                    name: string
+                    address: string
+                    latitude: 0
+                    longitude: 0
+                    templateButton:
+                      buttons:
+                        - buttonType: string
+                          displayText: string
+                          payLoad: string
+                    buttons:
+                      - displayText: string
+                        buttonId: string
+                    footerText: string
+                  options:
+                    delay: 0
+                    quoted:
+                      messageId: string
+                    mentions:
+                      everyOne: false
+                      mentioned:
+                        - string
+              fullTemplate:
+                summary: LocationTemplate - Example
+                value:
+                  numbers:
+                    - "5531900000000"
+                  locationMessage:
+                    name: 🗺️ Moeda 🗺️
+                    address: Moeda - MG
+                    latitude: -20.32568196333534
+                    longitude: -44.016271276581236
+                    templateButton:
+                      buttons:
+                        - buttonType: urlButton
+                          displayText: ⭐️ Moeda - MG ⭐️
+                          payload: https://www.google.com/maps/place/Moeda+-+State+of+Minas+Gerais/@-20.3295485,-44.0769519,12z/data=!3m1!4b1!4m5!3m4!1s0xa1497b13ed71a3:0x34902b2079647266!8m2!3d-20.3336369!4d-44.0525432
+                        - buttonType: callButton
+                          displayText: Call Me
+                          payload: +55 31 9 1100-2200
+                        - buttonType: replyButton
+                          displayText: I know the city
+                          payload: button-id-01
+                        - buttonType: replyButton
+                          displayText: I have already visited
+                          payload: button-id-02
+                        - buttonType: replyButton
+                          displayText: I want to meet
+                          payload: button-id-03
+                  options:
+                    delay: 1200
+              fullCommonButoons:
+                summary: LocationCommonButtons - Example
+                value:
+                  numbers:
+                    - "5531900000000"
+                  locationMessage:
+                    name: 🗺️ Moeda 🗺️
+                    address: Moeda - MG
+                    latitude: -20.32568196333534
+                    longitude: -44.016271276581236
+                    commonButtons:
+                      buttons:
+                        - displayText: I know the city
+                          buttonId: button-id-01
+                        - displayText: I have already visited
+                          buttonId: button-id-02
+                        - displayText: I want to meet
+                          buttonId: button-id-02
+                  options:
+                    delay: 1200
+              optional:
+                summary: Minimal properties
+                value:
+                  numbers:
+                    - "5531900000000"
+                  locationMessage:
+                    latitude: -20.32568196333534
+                    longitude: -44.016271276581236
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendList:
+    post:
+      operationId: SendeMessageController_sendListMessage
+      summary: List message to be sent
+      description: "## ListMessage"
+      parameters: []
+      requestBody:
+        required: true
+        description: "### Create custom lists"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ListMessage"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  listMessage:
+                    title: string
+                    description: string
+                    buttonText: string
+                    footerText: string
+                    sections:
+                      - title: string
+                        rows:
+                          - title: string
+                            description: string
+                            rowId: string
+                  options:
+                    delay: 0
+                    quoted:
+                      messageId: string
+                    mentions:
+                      everyOne: false
+                      mentioned:
+                        - string
+              full:
+                summary: Full Example
+                value:
+                  numbers:
+                    - "553190008888"
+                    - "5531999999999"
+                  listMessage:
+                    title: List Title
+                    description: List description
+                    buttonText: Click Here
+                    footerText: |-
+                      footer list
+                      https://exemplelink.com.br
+                    sections:
+                      - title: Row tilte 01
+                        rows:
+                          - title: Title row 01
+                            description: Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's
+                              standard dummy text ever since the 1500s,
+                            rowId: rowId 001
+                          - title: Title row 02
+                            description: Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's
+                              standard dummy text ever since the 1500s,
+                            rowId: rowId 002
+                      - title: Row tilte 02
+                        rows:
+                          - title: Title row 01
+                            description: Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's
+                              standard dummy text ever since the 1500s,
+                            rowId: rowId 001
+                          - title: Title row 02
+                            description: Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's
+                              standard dummy text ever since the 1500s,
+                            rowId: rowId 002
+                  options:
+                    delay: 1200
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendLinkPreview:
+    post:
+      operationId: SendeMessageController_sendLinkPrevilMessage
+      summary: LinkPreview message to be sent
+      description: |-
+        ## LinkPreviewMessage
+
+        Template mode is incompatible with IOS.
+      parameters:
+        - name: mode
+          required: false
+          in: query
+          description: "default: common"
+          schema:
+            enum:
+              - common
+              - template
+            type: string
+      requestBody:
+        required: true
+        description: "### Generate preview link"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LinkPreviewMessage"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  options:
+                    delay: 0
+                    quoted:
+                      messageId: string
+                    mentions:
+                      everyOne: false
+                      mentioned:
+                        - string
+                  linkPreview:
+                    url: string - required
+                    title: string - optional
+                    description: string - optional
+                    text: string - optional
+                    image: string - optional
+              default:
+                summary: Commom or Template
+                value:
+                  numbers:
+                    - "5531999990000"
+                  options:
+                    delay: 1200
+                  linkPreview:
+                    url: https://github.com/code-chat-br
+              custom:
+                summary: Common custom
+                value:
+                  numbers:
+                    - "5531999990000"
+                  options:
+                    delay: 1200
+                  linkPreview:
+                    url: https://github.com/code-chat-br
+                    title: CodeChat
+                    description: Rest api for communication with WhatsApp
+                    text: Go to the page and have fun
+                    image: https://raw.githubusercontent.com/code-chat-br/whatsapp-api/main/public/images/code.png
+              template:
+                summary: Template custom
+                value:
+                  numbers:
+                    - "5531999990000"
+                  options:
+                    delay: 1200
+                  linkPreview:
+                    url: https://github.com/code-chat-br
+                    title: CodeChat
+                    description: Rest api for communication with WhatsApp
+                    text: Click here
+                    image: https://raw.githubusercontent.com/code-chat-br/whatsapp-api/main/public/images/code.png
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendContact:
+    post:
+      operationId: SendeMessageController_sendContactMessage
+      summary: Message with contact to be sent
+      description: "## ContactMessage"
+      parameters: []
+      requestBody:
+        required: true
+        description: "### Send contact"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactMessage"
+            examples:
+              raw:
+                summary: Model
+                value:
+                  numbers:
+                    - string
+                  contactsMessage:
+                    - fullName: string
+                      wuid: string
+                      phoneNumber: string
+                  options:
+                    quoted:
+                      messageId: string
+                    mentioned:
+                      - string
+                    delay: number
+              full:
+                summary: Full Example
+                value:
+                  numbers:
+                    - "5531999990000"
+                  contactsMessage:
+                    - fullName: Contact Name
+                      wuid: "5531988882222"
+                      phoneNumber: +55 31 9 8888-2222
+                    - fullName: Contact Name
+                      wuid: "5531922228888"
+                      phoneNumber: +55 31 9 2222-8888
+                  options:
+                    delay: 1200
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/sendReaction:
+    post:
+      operationId: SendeMessageController_sendReaction
+      summary: Reaction Message
+      description: "## ReactionMessage"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReactionMessage"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/message/findQueueSendMessge:
+    get:
+      operationId: SendeMessageController_findQueueSendMessage
+      summary: Retrieve queue information
+      description: "## FindQueueSendMessage"
+      parameters:
+        - name: queueId
+          required: false
+          in: query
+          description: optional
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QueueModel"
+      tags: *a5
+      security: *a6
+  /codechat/chat/onWhatsapp:
+    post:
+      operationId: ChatController_checkNumberWhatsapp
+      summary: On Whatsapp
+      description: "## OnWhatsapp"
+      parameters: []
+      requestBody:
+        required: true
+        description: "### Check if the contact is a whatsapp contact"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OnWhatsappModel"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OnWhatsapp"
+      tags:
+        &a7
+        - Chat Controller
+      security:
+        &a8
+        - Authorization: []
+  /codechat/chat/updatePresence:
+    put:
+      operationId: ChatController_updatePresence
+      summary: Update presence
+      description: "## UpdatePresence\r
+
+        \r
+
+        Simulate your presence in the chat.\r
+
+        \r\n"
+      parameters:
+        - name: number
+          required: true
+          in: query
+          description: required
+          schema:
+            title: Number to send your presence
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PresenceModel"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/markMessageAsRead:
+    put:
+      operationId: ChatController_updateReadMessage
+      summary: Read Message
+      description: "## ReadMessage"
+      parameters: []
+      requestBody:
+        required: true
+        description: "### Update message with preview"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/OmitTypeClass"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/archiveChat:
+    put:
+      operationId: ChatController_archiveWhChat
+      summary: Archive chat
+      description: "## ArchiveChat"
+      parameters: []
+      requestBody:
+        required: true
+        description: "### Archived one or more chats"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArchiveChatsModel"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/blockContact:
+    put:
+      operationId: ChatController_updateBlockContact
+      summary: Update Block Contact
+      description: "## BlockContact"
+      parameters:
+        - name: number
+          required: true
+          in: query
+          description: required
+          schema:
+            title: Number to send your presence
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlockContactModel"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchStatusContact:
+    get:
+      operationId: ChatController_fetchStatusChat
+      summary: Fetch Status
+      description: "## FechtStatus"
+      parameters:
+        - name: number
+          required: true
+          in: query
+          description: "#### Retrieve chat status"
+          schema:
+            title: Number to send your presence
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusModel"
+      tags: *a7
+      security: *a8
+  /codechat/chat/updateStatus:
+    put:
+      operationId: ChatController_updateStatus
+      summary: Update Status
+      description: "## Update the status for your contact."
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PickTypeClass"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchAllContacts:
+    get:
+      operationId: ChatController_fetchAllContacts
+      summary: All Contacts
+      description: "## FetchAllContacts"
+      parameters: []
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactModel"
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchBusinessProfile:
+    get:
+      operationId: ChatController_fetchBusinessProfile
+      summary: Business Profile
+      description: "## FechtBusinessProfile"
+      parameters:
+        - name: number
+          required: true
+          in: query
+          description: "#### Retrieve the information of a business contact"
+          schema:
+            title: Number to send your presence
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchProfilePictureUrl:
+    get:
+      operationId: ChatController_fetchProfilePictureUrl
+      summary: Profile picture url
+      description: "## ProfilePictureUrl"
+      parameters:
+        - name: number
+          required: true
+          in: query
+          description: Retrieve a contact's profile picture
+          schema:
+            title: Number to send your presence
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchBlockedList:
+    get:
+      operationId: ChatController_fetchBlockedList
+      summary: Bolck list
+      description: "## FechBlockList"
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags: *a7
+      security: *a8
+  /codechat/chat/deleteMessage:
+    delete:
+      operationId: ChatController_deleteMessage
+      summary: Delete the message
+      description: |-
+        ## DeleteMessage
+
+        Delete message for everyone or me.
+      parameters:
+        - name: from
+          required: false
+          in: query
+          schema:
+            enum:
+              - me
+              - everyone
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HeaderMessage"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/base64MediaMessage:
+    post:
+      operationId: ChatController_base64MessageMediaByAttr
+      summary: Base64 Message Media By Attributes
+      description: "## Base64MessageMedia"
+      parameters: []
+      requestBody:
+        required: true
+        description: Insert the entire object of the media message received or sent by
+          whatsapp.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyMessage"
+            examples:
+              decryptMedia:
+                summary: Example
+                value:
+                  messageType: imageMessage
+                  messgage:
+                    url: https://mmg.whatsapp.net/d/f/AoMr6tHbAFyIinn8bx4efFjDfwuJgLQBDpUBeGAfXG9i.enc
+                    mimetype: image/jpeg
+                    caption: Caption
+                    fileSha256: MnHZs3t4lCnNR97Fj9oUDl24kKXqT0HEfKd2R9xLAhA=
+                    fileLength: "6655"
+                    height: 460
+                    width: 460
+                    mediaKey: OTkzo2+HAHlQnVoFpwvxg+rUSa1PpYF15tfNKEMv2UA=
+                    fileEncSha256: u3+toBGw5DE+Ll1sITubs4VPxSANeJlesv5qDlTdTrc=
+                    directPath: /v/t62.7118-24/20096757_826476445004433_5008683361068671553_n.enc?ccb=11-4&oh=01_AVxNtRClJSUcrFMZQz0YNuwmrfGzGESuYEmnf3mUj-8vww&oe=631E8DE8
+                    mediaKeyTimestamp: "1660501070"
+                    jpegThumbnail: /9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABsbGxscGx4hIR4qLSgtKj04MzM4PV1CR0JHQl2NWGdYWGdYjX2Xe3N7l33gsJycsOD/2c7Z//////////////8BGxsbGxwbHiEhHiotKC0qPTgzMzg9XUJHQkdCXY1YZ1hYZ1iNfZd7c3uXfeCwnJyw4P/Zztn////////////////CABEIAEgASAMBIgACEQEDEQH/xAAxAAEAAwEBAQAAAAAAAAAAAAAAAgMEBQEGAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/2gAMAwEAAhADEAAAAPnRewAAAAknzRqsz78te5GvJ86XO04PBOLbi6VeqaVWffa5+yaWZNNZzhr5K6ktOPhAIlOosCoAAAAH/8QAJBAAAgEDAgYDAAAAAAAAAAAAAQIAAxExBBASExQgM0AhUWH/2gAIAQEAAT8A9QKWNgIumY5M6VfuNpmGDCCDY9iqWIAiU1QdlSkHH7GUqSDvpk+C0MHZqUw29HxrtUqqk578d4lVXF4GVsGV/GdxWYKFE5j3JvCSc7hmXBhqsycJ9T//xAAdEQABBAIDAAAAAAAAAAAAAAABAAIQIBESITFR/9oACAECAQE/ALF/i2KBzD+oLSEODXF//8QAIREBAAICAQMFAAAAAAAAAAAAAQIDABEEECAiITFCYXH/2gAIAQMBAT8A7QV0ZXxYh5+rjxqX45dS1P104kRt/DJMY+S6MrvhYoZcE6pdIylHenWMl916E5Agvf8A/9k=
+                    scansSidecar: UZObXtfc8b6KcbqeGD4RoGElgza0XfTPJ38Pc79lO4SOQ/MngBZsNg==
+                    scanLengths:
+                      - 1200
+                      - 4051
+                      - 568
+                      - 836
+                    midQualityFileSha256: vPjyLbwxJ/AW91HQWcavh5Tp+vpOxwFGgcIz2Z8kY0U=
+      responses:
+        "201":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/fetchRawMessages:
+    get:
+      operationId: ChatController_fetchMessages
+      summary: Raw Messages
+      description: |-
+        ## FetchRawMessages
+
+        Fetch messages from the last two hours in their original format.
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/callSetup:
+    put:
+      operationId: ChatController_callSetup
+      summary: Call Setup
+      description: |-
+        ## CallSetup
+
+        Automatically reject the call and send a text message
+      parameters: []
+      requestBody:
+        required: true
+        description: Set a friendly message describing the reason for rejecting the call.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectCallModel"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/chat/automaticReading:
+    put:
+      operationId: ChatController_autoReading
+      summary: Automativ Reading
+      description: "## AutomaticReading"
+      parameters: []
+      requestBody:
+        required: true
+        description: Automatically mark any new incoming messages as read.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AutomaticReadingModel"
+      responses:
+        "200":
+          description: ""
+      tags: *a7
+      security: *a8
+  /codechat/group/create:
+    post:
+      operationId: GroupController_createNewGroup
+      summary: Create Group
+      description: "## CreateNewGroup"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGroupModel"
+      responses:
+        "201":
+          description: ""
+      tags:
+        &a9
+        - Group Controller
+      security:
+        &a10
+        - Authorization: []
+  /codechat/group/invitionCode:
+    get:
+      operationId: GroupController_groupInviteCode
+      summary: Invite Code
+      description: "## InviteCode"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/revokeInviteCode:
+    put:
+      operationId: GroupController_revokeInviteCode
+      summary: Revoke Invite Code
+      description: "## RevokeInviteCode"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/accetpInviteGroup:
+    put:
+      operationId: GroupController_acceptInvite
+      summary: Accept Invite Code
+      description: "## AcceptInvite"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InviteGroup"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/updateInfo:
+    put:
+      operationId: GroupController_updateGroupinfo
+      summary: Update Group Info
+      description: "## UpGroupInfo"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateInfoGroup"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/updateProfilePicture:
+    put:
+      operationId: GroupController_updateProfilePictureGroup
+      summary: Update Group Profile Picture
+      description: "## UpGroupProflePic"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfilePcture"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/fetchInfo:
+    get:
+      operationId: GroupController_fetchInfoGroup
+      summary: Fetch Group Information
+      description: "## GroupInformation"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/updateParticipant:
+    put:
+      operationId: GroupController_updateParticipante
+      summary: Update group member
+      description: "## UpGroupMember"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: "### Enter the participant's phone number\r
+
+          \r
+
+          **add**, **promote**, **demote** and **remove** participants
+          from a group.\r
+
+          \r
+
+          ```ts\r
+
+          type action: 'add' | 'remove' | 'promote' | 'demote';\r
+
+          ```\r\n"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGroupParticipant"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/updateRules:
+    put:
+      operationId: GroupController_updateGroupSettings
+      summary: Update Group Rules
+      description: "## GroupRules"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: "### Update group settings.\r
+
+          \r
+
+          ```ts\r
+
+          type settings: 'announcement' | 'locked' |
+          'not_announcement' | 'unlocked'\r
+
+          ```\r
+
+          * **announcement:** only admins can comment;\r
+
+          * **not_announcement:** everyone can comment;\r
+
+          * **locked:** only administrators can edit group data;\r
+
+          * **unlocked:** everyone can edit group data;\r\n"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGroupSettings"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/changeExpiration:
+    put:
+      operationId: GroupController_changeExpiration
+      summary: Cahnge Expiration Message
+      description: "## ChangeExpiration\r
+
+        #### Temporary messages.\r
+
+        \r
+
+        <font size='3'>Change group messages expiration as per whatsapp
+        rules.</font></br>\r
+
+        </br>\r
+
+        \r
+
+        <font size='3'>**The expiration types are:**</font>\r
+
+        \r
+
+        * **0:** Turn off temporary messages;\r
+
+        * **1:** Enable for 1 day (24 hours);\r
+
+        * **7:** Enable for a week (7 days);\r
+
+        * **90:** Enable for three months (90 days)."
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExpirationMessageGroup"
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/fetchParticipants:
+    get:
+      operationId: GroupController_fetchGroupParticipants
+      summary: Fetch Group Participants
+      description: "## GroupInformation"
+      parameters:
+        - name: memberType
+          required: false
+          in: query
+          schema:
+            enum:
+              - all
+              - common
+              - admin
+              - superadmin
+            type: string
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/group/leave:
+    delete:
+      operationId: GroupController_levelGroup
+      summary: Leave Group
+      description: "## LeaveGroup"
+      parameters:
+        - name: groupJid
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags: *a9
+      security: *a10
+  /codechat/payment/requestPayment:
+    post:
+      operationId: PaymentController_requestPaymentMessage
+      summary: Request Payment Message
+      description: Send your contacts a message to pay for a product or service.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestPayment"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags:
+        - Payment Controller
+      security:
+        - Authorization: []
+  /codechat/business/findCatalog:
+    get:
+      operationId: BusinessController_findCatalog
+      summary: Retrieve the Catalog.
+      description: "## FindCatalog"
+      parameters:
+        - name: number
+          required: false
+          in: query
+          description: Enter the whatsapp number from which you want to get the catalog.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags:
+        &a11
+        - Business Controller
+      security:
+        &a12
+        - Authorization: []
+  /codechat/business/sendProduct:
+    post:
+      operationId: BusinessController_sendProduct
+      summary: Send a Product.
+      description: "## SendProduct"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductIdWA"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a11
+      security: *a12
+  /codechat/business/sendCatalog:
+    post:
+      operationId: BusinessController_sendCatalog
+      summary: Send Catalog
+      description: "## SendCatalogWA"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CatalogCover"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a11
+      security: *a12
+  /codechat/business/sendCatalogList:
+    post:
+      operationId: BusinessController_sendCatalogList
+      summary: Send Catalog List
+      description: >-
+        ## SendCatalogListWA
+
+
+        The list will be composed, internally, by the items that you have in the catalog.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CatalogList"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueModel"
+      tags: *a11
+      security: *a12
+  /codechat/statistics/messageCounter:
+    get:
+      operationId: StatisticsWAController_findStatistics
+      summary: Message Counter
+      description: >-
+        ## MessageCounter
+
+
+        This endpoint retrieves the message count.
+
+
+        Messages are grouped, by default, by type and by date, from the beginning of the first connection with the device..
+
+
+        ```ts
+
+        [
+          {
+            type: 'image',
+            group: [{ date: '2022-11-17', amount: 2 }],
+          },
+          {
+            type: 'list',
+            group: [
+              { date: '2022-11-12', amount: 5 },
+              { date: '2022-11-17', amount: 2 },
+            ],
+          },
+          {
+            type: 'audio',
+            group: [{ date: '2022-11-17', amount: 2 }],
+          },
+          {
+            type: 'linkPreview',
+            group: [
+              { date: '2022-11-17', amount: 3 },
+              { date: '2022-11-12', amount: 2 },
+              { date: '2022-11-13', amount: 5 },
+            ],
+          },
+          {
+            type: 'buttons',
+            group: [
+              { date: '2022-11-13', amount: 5 },
+              { date: '2022-11-17', amount: 4 },
+              { date: '2022-11-12', amount: 2 },
+            ],
+          },
+          {
+            type: 'text',
+            group: [
+              [
+                { date: '2022-11-12', amount: 4 },
+                { date: '2022-11-13', amount: 9 },
+                { date: '2022-11-17', amount: 2 },
+              ],
+            ],
+          },
+          {
+            type: 'audioWA',
+            group: [{ date: '2022-11-17', amount: 2 }],
+          },
+          {
+            type: 'location',
+            group: [{ date: '2022-11-13', amount: 5 }],
+          },
+          {
+            type: 'template',
+            group: [
+              { date: '2022-11-17', amount: 4 },
+              { date: '2022-11-12', amount: 1 },
+            ],
+          },
+        ]
+
+        ```
+      parameters:
+        - name: raw
+          required: false
+          in: query
+          description: You can also retrieve raw statistics data grouped by type. Pass the
+            parameter raw as true.</br>default - false
+          schema:
+            enum:
+              - "true"
+              - "false"
+            type: string
+      responses:
+        "200":
+          description: ""
+      tags:
+        - Statistics Controller
+      security:
+        - Authorization: []
+info:
+  title: CODECHAT - WHATSAPP API
+  description: "</hr>\r
+
+    \r
+
+    ![codechat-comer](https://docs.codechat.dev/cover.png)\r
+
+    \r
+
+    ## Typescript/Jsvascript Whatsapp Web API\r
+
+    \r
+
+    <font size=\"3\">\r
+
+    \   It is a high performance scalable API that uses http requests to
+    communicate with Whatsaap; as per the documentation below.</br>\r
+
+    </font>\r
+
+    \r
+
+    <font size=\"3\">\r
+
+    ‎ ‎ ‎  **Requests return:** JSON</br>\r
+
+    ──────────────────\r
+
+    </font>\r
+
+    \r
+
+    </hr>\r
+
+    \r
+
+    ## Webhook \\[POST\\]\r
+
+    \r
+
+    <font size =\"3\">The events are informed in the **event** attribute in
+    the object that is sent through the **body** of the **http
+    request**.</font>\r
+
+    \r
+
+    |   | <font size='6'>Events</font>  | |\r
+
+    |---| ---------|-|\r
+
+    | **#** | <font size='5'>**1 Instance**</font> | |\r
+
+    |   |        |            |\r
+
+    | 1 | **connection.update** | Informs the status of the connection with
+    whatsapp - ```open - connecting - close - refused```  |\r
+
+    | 2 | **qrcode.updated** |  Sends the base64 of the qrcode for reading
+    |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**2 Chat**</font> | |\r
+
+    |   | <font size='3'>**Event**</font>   | <font
+    size='3'>**Description**</font>  |\r
+
+    |   |        |            |\r
+
+    | 1 | **chats.set** | Send a list of all loaded chats |\r
+
+    | 2 | **chats.upsert** | Informs the status of the connection with
+    whatsapp |\r
+
+    | 3 | **chats.update** | Informs you when the chat is updated |\r
+
+    | 4 | **chats.delete** |  Informs you when the chat is deleted |\r
+
+    | 5 | **presence.update** | Informs if the user is online, if he is
+    performing some action like writing or recording and his last seen |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**3 Contact**</font> | |\r
+
+    |   | <font size='3'>**Event**</font>   | <font
+    size='3'>**Description**</font>  |\r
+
+    |   |        |            |\r
+
+    | 1 | **contacts.upsert** | Sends the list of contacts loaded<br> - This
+    information may take some time to arrive depending on the size of your
+    contact list.</br> - For example: a list of 200 contacts, it can take up to
+    45 seconds to load all contacts. |\r
+
+    | 2 | **contacts.update** | informs you when the contact is updated |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**4 Message**</font> | |\r
+
+    |   | <font size='3'>**Event**</font>   | <font
+    size='3'>**Description**</font>  |\r
+
+    |   |        |            |\r
+
+    | 1 | **new.message** | Tells you when a message is received</br> **-
+    ⚠️Heads up⚠️:** For media messages larger than **8MB** in size, automatic
+    conversion to **base64** is not performed.</br>Use the
+    **/chat/base64MediaMessage** route to do the conversion.|\r
+
+    | 3 | **messages.update** | Tells you when a message is updated</br> -
+    Example: message ```DELIVERY_AT``` or ```READ``` |\r
+
+    | 2 | **message.delete** | Informs when a message is deleted |\r
+
+    | 4 | **messages.set** | Sends a list of all your old messages uploaded
+    to whatsapp</br> - Este evento pode se repetir de acordo com o número de
+    mensagens que você tem</br> - ⚠️**So beware⚠️:** This event is triggered
+    immediately after reading the qr code. After the messages are loaded, the
+    event does not occur again |\r
+
+    | 5 | **status.broadcast** | Notifies when a contact publishes a
+    **Status** |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**5 Send Message**</font> | |\r
+
+    |   | <font size='3'>**Event**</font> | <font
+    size='3'>**Description**</font> |\r
+
+    | 1 | **send.message:START** | Indicates the start of the submission
+    process |\r
+
+    | 2 | **send.message:PROCESSING** | Informs the processing of sending
+    messages from 0 to 100% |\r
+
+    | 3 | **send.message:COMPLETED** | Notifies the completion of the
+    submission process</br> - Após a conclusão, uma fila é eliminada
+    automaticamente pelo sistema. |\r
+
+    | 4 | **send.message:ERROR** | Notifies the error and its cause during
+    the processing of the mailing list, but does not interrupt it |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**6 Payment**</font> | |\r
+
+    |   | <font size='3'>**Event**</font> | <font
+    size='3'>**Description**</font> |\r
+
+    | 1 | **request.payment** | Inform the moment of your payment request
+    |\r
+
+    | 2 | **decline.payment** | Inform informs you that you declined a
+    payment message received by your contact, or that the recipient refused your
+    payment request |\r
+
+    | 3 | **cancel.payment** | Report informs you that you canceled a
+    payment message sent by your contact, or that a contact canceled a payment
+    request sent to you |\r
+
+    | 4 | **send.payment** | Informs that you have received a payment, which
+    may be the answer to your request |\r
+
+    |   |        |            |\r
+
+    | **#** | <font size='5'>**7 Error**</font> | |\r
+
+    |   | <font size='3'>**Event**</font> | <font
+    size='3'>**Description**</font> |\r
+
+    | 1 | **general.error** | Report the error linked to an event |\r
+
+    </hr>\r
+
+    </br>"
+  version: 2.1.0
+  contact:
+    name: jrCleber
+    url: https://github.com/code-chat-br
+    email: cleber@codechat.dev
+  termsOfService: https://api.codechat.rest/terms-of-use
+tags: []
+servers: []
+components:
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: apikey
+      description: Authentication key generated after completing the registration
+  schemas:
+    ConnectionSettingsModel:
+      type: object
+      properties:
+        proxy:
+          type: string
+          title: Enter a proxy for each instance created
+    InstanceWAModel:
+      type: object
+      properties:
+        wuid:
+          type: string
+          title: wuid - contact id on whatsapp.
+        userName:
+          type: string
+          title: Contact name.
+        profilePictureUrl:
+          type: string
+          title: Contact profile picture.
+        isBusiness:
+          type: boolean
+          title: "Whatsapp type: business or common"
+          readOnly: true
+        createAt:
+          format: date-time
+          type: string
+          title: Creation date
+          description: It will be automatically converted by the application to timestamp
+          default: 2022-12-19T20:05:08.995Z
+        updateAt:
+          format: date-time
+          type: string
+          title: Update date - optional
+          description: It will be automatically converted by the application to timestamp
+      required:
+        - wuid
+        - userName
+        - createAt
+    QrCodeModel:
+      type: object
+      properties:
+        instanceKey:
+          type: string
+          title: Selected instance
+          default: string
+        base64:
+          type: string
+          title: Qrcode of selected instance
+        code:
+          type: string
+          title: Qrcode of selected instance
+      required:
+        - instanceKey
+    ConnectionInstance:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+      required:
+        - name
+        - id
+    ConnectionUpdate:
+      type: object
+      properties:
+        instance:
+          allOf:
+            - $ref: "#/components/schemas/ConnectionInstance"
+        state:
+          type: string
+          default: open | connecting | refused
+        statusReason:
+          type: number
+      required:
+        - instance
+        - state
+        - statusReason
+    ProfilePcture:
+      type: object
+      properties:
+        urlOrBase64:
+          type: string
+          title: Update your profile picture
+      required:
+        - urlOrBase64
+    ProfileName:
+      type: object
+      properties:
+        profileName:
+          type: string
+      required:
+        - profileName
+    WebhookModel:
+      type: object
+      properties:
+        url:
+          type: string
+          title: Url
+        enabled:
+          type: boolean
+          title: Enables or disables the instance-bound webhook
+          default: false
+      required:
+        - url
+        - enabled
+    WebhookEvents:
+      type: object
+      properties:
+        chatsSet:
+          type: boolean
+          default: true
+        chatsUpdate:
+          type: boolean
+          default: false
+        chatsDelete:
+          type: boolean
+          default: false
+        contactsUpsert:
+          type: boolean
+          default: true
+        contactsUpdate:
+          type: boolean
+          default: false
+        statusBroadcast:
+          type: boolean
+          default: false
+        newMessage:
+          type: boolean
+          default: true
+        sendMessage:
+          type: boolean
+          default: true
+        sendMessageStart:
+          type: boolean
+          default: true
+        sebdMessageProcessing:
+          type: boolean
+          default: true
+        sendMessageCompleted:
+          type: boolean
+          default: true
+        sendMessageError:
+          type: boolean
+          default: true
+        messageDelete:
+          type: boolean
+          default: false
+        messageUpdate:
+          type: boolean
+          default: true
+        messagesSet:
+          type: boolean
+          default: false
+        presenceUpdate:
+          type: boolean
+          default: false
+        requestPayment:
+          type: boolean
+          default: false
+        sendPayment:
+          type: boolean
+          default: false
+        declinePayment:
+          type: boolean
+          default: false
+        cancelPayment:
+          type: boolean
+          default: false
+        generalError:
+          type: boolean
+          default: true
+      required:
+        - chatsSet
+        - chatsUpdate
+        - chatsDelete
+        - contactsUpsert
+        - contactsUpdate
+        - statusBroadcast
+        - newMessage
+        - sendMessage
+        - sendMessageStart
+        - sebdMessageProcessing
+        - sendMessageCompleted
+        - sendMessageError
+        - messageDelete
+        - messageUpdate
+        - messagesSet
+        - presenceUpdate
+        - requestPayment
+        - sendPayment
+        - declinePayment
+        - cancelPayment
+        - generalError
+    MessageIdModel:
+      type: object
+      properties:
+        messageId:
+          type: string
+      required:
+        - messageId
+    MentionModel:
+      type: object
+      properties:
+        everyOne:
+          type: boolean
+          title: everyOne
+          description: 'Pass this property to "true" to mention everyone in a
+            group</br>default: false'
+          default: false
+        mentioned:
+          title: Mention participants
+          description: The mention of participants is valid only for groups
+          type: array
+          items:
+            type: string
+    MessageOptions:
+      type: object
+      properties:
+        delay:
+          type: number
+          description: "Enter an integer value that represents a timestamp for the message
+            delay: Ex.: { delay: 1500 }"
+        quoted:
+          title: Quoted Message
+          description: Inform the id of the message you want to quote, remembering that
+            you can only quote one message at a time in the chat.
+          allOf:
+            - $ref: "#/components/schemas/MessageIdModel"
+        mentions:
+          description: Mention people in groups or simple chats.
+          allOf:
+            - $ref: "#/components/schemas/MentionModel"
+    EmbededText:
+      type: object
+      properties:
+        text:
+          type: string
+          title: Message text
+          description: required
+      required:
+        - text
+    SendTextModel:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        textMessage:
+          title: Text Message
+          allOf:
+            - $ref: "#/components/schemas/EmbededText"
+      required:
+        - numbers
+        - textMessage
+    Queue:
+      type: object
+      properties:
+        queueId:
+          type: string
+        status:
+          type: string
+        progress:
+          type: number
+      required:
+        - status
+        - progress
+    QueueData:
+      type: object
+      properties:
+        message:
+          type: object
+        jids:
+          type: array
+          items:
+            type: string
+        messagesIds:
+          type: array
+          items:
+            type: string
+      required:
+        - message
+        - jids
+        - messagesIds
+    QueueModel:
+      type: object
+      properties:
+        queue:
+          allOf:
+            - $ref: "#/components/schemas/Queue"
+        data:
+          allOf:
+            - $ref: "#/components/schemas/QueueData"
+        instanceConnectedId:
+          type: string
+      required:
+        - queue
+        - instanceConnectedId
+    ButtonsLegacy:
+      type: object
+      properties:
+        displayText:
+          type: string
+        buttonId:
+          type: string
+      required:
+        - displayText
+    OmitTypeClass:
+      type: object
+      properties:
+        messageId:
+          type: string
+        fromMe:
+          type: boolean
+        wuid:
+          type: string
+          description: |-
+            Pass this property if it is a group message.
+            ex: 5531900000000@s.whatsapp.ne
+      required:
+        - messageId
+        - fromMe
+        - wuid
+    EmbededCommonButtons:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Message text
+          description: required
+        description:
+          type: string
+          title: Message text
+          description: optional
+        buttons:
+          title: button template
+          type: array
+          items:
+            $ref: "#/components/schemas/ButtonsLegacy"
+        footerText:
+          type: string
+          title: Footer text
+          description: optional
+        mediaMessage:
+          title: Media message not included in the template
+          description: "Supported media types: image | video | document"
+          allOf:
+            - $ref: "#/components/schemas/OmitTypeClass"
+      required:
+        - title
+        - buttons
+    CommonButtons:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        buttonsMessage:
+          allOf:
+            - $ref: "#/components/schemas/EmbededCommonButtons"
+      required:
+        - numbers
+        - buttonsMessage
+    TemplateButtons:
+      type: object
+      properties:
+        typeButton:
+          type: string
+          title: Set the button type
+          description: required
+        displayText:
+          type: string
+          title: Button text
+          description: required
+        payLoad:
+          type: string
+          title: Payload
+          description: Value corresponding to button type - required
+      required:
+        - typeButton
+        - displayText
+        - payLoad
+    EmbededTemplate:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Message text
+          description: required
+        description:
+          type: string
+          title: Message text
+          description: required
+        buttons:
+          title: Choose at least one of the types of buttons to send
+          type: array
+          items:
+            $ref: "#/components/schemas/TemplateButtons"
+        footerText:
+          type: string
+          title: Footer text
+          description: optional
+        mediaMessage:
+          title: Media message not included in the template
+          description: "Supported media types: image | video | document"
+          allOf:
+            - $ref: "#/components/schemas/OmitTypeClass"
+      required:
+        - description
+        - buttons
+    TemplateMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        templateMessage:
+          allOf:
+            - $ref: "#/components/schemas/EmbededTemplate"
+      required:
+        - numbers
+        - templateMessage
+    EmbededMediaMessage:
+      type: object
+      properties:
+        caption:
+          type: string
+          title: caption - description - title
+        mediaType:
+          type: string
+          title: Type of media message to be sent
+        fileName:
+          type: string
+          title: File name
+          description: Enter the file name along with its extension.
+        urlOrBase64:
+          type: string
+          title: Pass the media url being of the specified type
+      required:
+        - fileName
+        - urlOrBase64
+    MediaMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        mediaMessage:
+          title: Send message with media
+          description: image | video | sticker | audio | document
+          allOf:
+            - $ref: "#/components/schemas/EmbededMediaMessage"
+      required:
+        - numbers
+        - mediaMessage
+    EmbededAudio:
+      type: object
+      properties:
+        audio:
+          type: string
+          description: The url must not contain parameters and must end with the .opus
+            extension.
+      required:
+        - audio
+    AudioMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        whatsappAudio:
+          allOf:
+            - $ref: "#/components/schemas/EmbededAudio"
+      required:
+        - numbers
+        - whatsappAudio
+    LocationMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        locationMessage:
+          allOf:
+            - $ref: "#/components/schemas/EmbededMediaMessage"
+      required:
+        - numbers
+        - locationMessage
+    Row:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Row title
+        description:
+          type: string
+          title: Row description
+        rowId:
+          type: string
+          title: Row ID
+      required:
+        - title
+        - description
+        - rowId
+    Section:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Section title
+        row:
+          title: List of rows
+          type: array
+          items:
+            $ref: "#/components/schemas/Row"
+      required:
+        - title
+        - row
+    EmbededList:
+      type: object
+      properties:
+        title:
+          type: string
+          title: ListMessage title
+        description:
+          type: string
+          title: ListMessage description
+        buttonText:
+          type: string
+          title: Clickable button description
+        footerText:
+          type: string
+          title: ListMessage title
+        row:
+          title: List of sections
+          type: array
+          items:
+            $ref: "#/components/schemas/Section"
+      required:
+        - title
+        - description
+        - buttonText
+        - row
+    ListMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        listMessage:
+          allOf:
+            - $ref: "#/components/schemas/EmbededList"
+      required:
+        - numbers
+        - listMessage
+    EmbededLink:
+      type: object
+      properties:
+        url:
+          type: string
+          title: Url for preview link generation
+        title:
+          type: string
+        description:
+          type: string
+        text:
+          type: string
+        image:
+          type: string
+      required:
+        - url
+        - title
+        - description
+        - text
+        - image
+    LinkPreviewType:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+            - common
+            - template
+      required:
+        - mode
+    LinkPreviewMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        linkPreview:
+          allOf:
+            - $ref: "#/components/schemas/EmbededLink"
+        previewType:
+          readOnly: true
+          allOf:
+            - $ref: "#/components/schemas/LinkPreviewType"
+      required:
+        - numbers
+        - linkPreview
+        - previewType
+    ContactModel:
+      type: object
+      properties:
+        contactName:
+          type: string
+        phoneNumber:
+          type: string
+        wuid:
+          type: string
+        profilePictureUrl:
+          type: string
+        instanceName:
+          type: string
+      required:
+        - contactName
+        - phoneNumber
+        - wuid
+        - profilePictureUrl
+        - instanceName
+    ContactMessage:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        contactsMessage:
+          title: Submit one or more contacts
+          description: required
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactModel"
+      required:
+        - numbers
+        - contactsMessage
+    HeaderMessage:
+      type: object
+      properties:
+        messageId:
+          type: string
+        fromMe:
+          type: boolean
+        wuid:
+          type: string
+          description: |-
+            Pass this property if it is a group message.
+            ex: 5531900000000@s.whatsapp.ne
+        pushName:
+          type: string
+        participant:
+          type: string
+      required:
+        - messageId
+        - fromMe
+        - wuid
+    ReactionMessage:
+      type: object
+      properties:
+        header:
+          allOf:
+            - $ref: "#/components/schemas/HeaderMessage"
+        recation:
+          type: string
+          title: Reaction type
+      required:
+        - header
+        - recation
+    OnWhatsappModel:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          type: array
+          items:
+            type: string
+      required:
+        - numbers
+    OnWhatsapp:
+      type: object
+      properties:
+        exists:
+          type: boolean
+        jid:
+          type: string
+      required:
+        - exists
+        - jid
+    PresenceModel:
+      type: object
+      properties:
+        presence:
+          type: string
+          description: unavailable | available | composing | recording | paused
+        delay:
+          type: number
+          default: 1200
+      required:
+        - presence
+        - delay
+    LastMessage:
+      type: object
+      properties:
+        header:
+          allOf:
+            - $ref: "#/components/schemas/HeaderMessage"
+        messageTimestamp:
+          type: number
+      required:
+        - header
+        - messageTimestamp
+    ArchiveChatsModel:
+      type: object
+      properties:
+        archive:
+          type: boolean
+          description: required
+        lastMessages:
+          type: array
+          items:
+            $ref: "#/components/schemas/LastMessage"
+      required:
+        - archive
+        - lastMessages
+    BlockContactModel:
+      type: object
+      properties:
+        action:
+          type: string
+          description: block | unblock
+      required:
+        - action
+    StatusModel:
+      type: object
+      properties:
+        status:
+          type: string
+        setAt:
+          format: date-time
+          type: string
+      required:
+        - status
+        - setAt
+    PickTypeClass:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    SizeMediaModel:
+      type: object
+      properties:
+        heigth:
+          type: number
+        with:
+          type: number
+    BodyMessage:
+      type: object
+      properties:
+        messageType:
+          type: string
+        message:
+          type: object
+        caption:
+          type: string
+        mimetype:
+          type: string
+        size:
+          allOf:
+            - $ref: "#/components/schemas/SizeMediaModel"
+      required:
+        - messageType
+        - message
+    RejectCallModel:
+      type: object
+      properties:
+        reject:
+          type: boolean
+          default: false
+        message:
+          type: string
+      required:
+        - reject
+        - message
+    AutomaticReadingModel:
+      type: object
+      properties:
+        reading:
+          type: boolean
+          default: false
+      required:
+        - reading
+    CreateGroupModel:
+      type: object
+      properties:
+        participants:
+          title: Group participants
+          type: array
+          items:
+            type: string
+        groupSubject:
+          type: string
+          title: Subject of the group
+        groupDescription:
+          type: string
+          title: Description of the group
+        profilePicture:
+          type: string
+          description: The image must be a url or a base64.
+      required:
+        - participants
+        - groupSubject
+    InviteGroup:
+      type: object
+      properties:
+        inviteCode:
+          type: string
+          title: Invite code
+      required:
+        - inviteCode
+    UpdateInfoGroup:
+      type: object
+      properties:
+        groupSubject:
+          type: string
+          title: Subject of the group
+        groupDescription:
+          type: string
+          title: Description of the group
+      required:
+        - groupSubject
+        - groupDescription
+    UpdateGroupParticipant:
+      type: object
+      properties:
+        action:
+          type: string
+          title: Update type.
+          description: add | remove | promote | demote
+        participants:
+          title: Group participants
+          type: array
+          items:
+            type: string
+      required:
+        - action
+        - participants
+    UpdateGroupSettings:
+      type: object
+      properties:
+        settings:
+          type: string
+          title: Group Settings
+      required:
+        - settings
+    ExpirationMessageGroup:
+      type: object
+      properties:
+        expiration:
+          type: number
+          title: Make group messages expire, in 1 day or 7 days or 90 days.
+      required:
+        - expiration
+    MessageOptionsPay:
+      type: object
+      properties:
+        quoted:
+          title: Quoted Message
+          description: Inform the id of the message you want to quote, remembering that
+            you can only quote one message at a time in the chat.
+          allOf:
+            - $ref: "#/components/schemas/MessageIdModel"
+        mentioned:
+          title: Mention participants
+          description: The mention of participants is valid only for groups
+          type: array
+          items:
+            type: string
+        delay:
+          type: number
+          description: "Enter an integer value that represents a timestamp for the message
+            delay: Ex.: { delay: 1500 }"
+        expiryIn:
+          type: number
+          title: Inform, in second, the time in which the message will be enabled.
+          description: 60 -> 1 minute  |  3600 -> 1 hour  |  86400 -> 24 hour
+          default: 3600
+    EmbededPayment:
+      type: object
+      properties:
+        currency:
+          type: string
+          title: Enter the currency in the country.
+          description: https://pt.wikipedia.org/wiki/ISO_4217
+          default: BRL
+        text:
+          type: string
+        value:
+          type: number
+          title: Payment amount.
+      required:
+        - currency
+        - text
+        - value
+    RequestPayment:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptionsPay"
+        requestPayment:
+          allOf:
+            - $ref: "#/components/schemas/EmbededPayment"
+      required:
+        - numbers
+        - requestPayment
+    EmbededProduct:
+      type: object
+      properties:
+        productId:
+          type: string
+        coverUrl:
+          type: string
+      required:
+        - productId
+    ProductIdWA:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        productMessage:
+          title: Product Message
+          allOf:
+            - $ref: "#/components/schemas/EmbededProduct"
+      required:
+        - numbers
+        - productMessage
+    EmbededCatalog:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        coverUrl:
+          type: string
+    CatalogCover:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        catalogMessage:
+          title: Catalog Message
+          allOf:
+            - $ref: "#/components/schemas/EmbededCatalog"
+      required:
+        - numbers
+        - catalogMessage
+    EmbededCatalogList:
+      type: object
+      properties:
+        title:
+          type: string
+          title: title
+        subTitle:
+          type: string
+          title: subTitle
+        description:
+          type: string
+          title: description
+        footerText:
+          type: string
+          title: footerText
+        coverUrl:
+          type: string
+      required:
+        - title
+        - subTitle
+        - description
+        - footerText
+    CatalogList:
+      type: object
+      properties:
+        numbers:
+          title: List of numbers for sending messages
+          description: required
+          type: array
+          items:
+            type: string
+        options:
+          allOf:
+            - $ref: "#/components/schemas/MessageOptions"
+        catalogList:
+          title: Catalog List
+          allOf:
+            - $ref: "#/components/schemas/EmbededCatalogList"
+      required:
+        - numbers
+        - catalogList
