@@ -13,78 +13,9 @@ This code abstracts the functionality of the **[baileys](https://github.com/adiw
 With **[code-chat](https://api.codechat.dev/v1/docs)** you can create multiservice chats, service bots or any other system that uses whatsapp.
 With this code you don't need to know the javascript for **[nodejs](https://nodejs.org/pt-br/)**, just start the server and make the requests of the language that you feel most comfortable.
 
-[Infrastructure](#infrastructure)</br>
-[Application startup](#application-startup)</br>
 [Webhook](#webhook-post)
 
-# Infrastructure
-
-[Nvm instalation](#nvm-installation)</br>
-[Docker installation](#docker-installation)</br>
-[Nodejs installation](#nodejs-installation)
-
-## Nvm installation
-
-```sh
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-# or
-$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-```
-## Docker installation
-
-```sh
-$ curl -fsSL https://get.docker.com -o get-docker.sh
-
-$ sudo sh get-docker.sh
-
-$ sudo usermod -aG docker ${USER}
-
-$ sudo apt-get install docker-compose
-```
-## Nodejs installation
-
-```sh
-$ nvm install 16.10.0
-```
->
-> After finishing, restart the terminal to load the new information.
->
-```sh
-$ docker --version
-
-$ node --version
-
-$ docker-compose --version
-```
-
-# Application startup
-
-[Swagger docs](#routes-to-the-swagger-documentation)</br>
-[Postman docs](#routes-to-the-postman-documentation)</br>
-
-## ⚠️**Heads up**⚠️:
-Preferably use **npm** as a package manager.
-The library that we will use to communicate with whatsapp, in its version on github, it is in typescript. When installing the dependency using npm, it transpiles the code while installing it, which is not the case with other package managers. With **yarn**, for example, you need to access the **node_modules** folder and do the transpilation manually, which can greatly increase the size of this folder.
-
-Go to the project directory and install all dependencies.</br>
-```sh
-$ npm i
-```
-
-Finally, run the command below to start the application:
-```sh
-# Under development
-$ npm run start
-
-# In production
-$npm run start:prod
-```
-
-## Routes to the **Swagger** documentation
- - http://127.0.0.1:8083/v1/docs/
- - https://127.0.0.1/v1/docs/
-
-## Routes to the **Postman** documentation
+# Routes to the **Postman** documentation
   - **[Api Postman](https://www.postman.com/codechat/workspace/api-codechat/api/79e299bf-4ca9-4bc2-a5da-571ae24e0620)**
   - **[Json Postman](https://www.getpostman.com/collections/fc8fbab828d9b133974b)**
 
