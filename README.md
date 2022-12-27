@@ -15,7 +15,6 @@
 ## Whatsapp Web API
 
 <font size='3'>It is a high performance scalable API that uses http requests to communicate with Whatsaap; as per the documentation below.</font>
-<br></br><br></br>
 
 This code abstracts the functionality of the **[baileys](https://github.com/adiwajshing/Baileys)** library to http format, which control whatsapp functions.
 With **[code-chat](https://api.codechat.dev/v1/docs)** you can create multiservice chats, service bots or any other system that uses whatsapp.
