@@ -77,7 +77,7 @@ The events are informed in the **event** attribute in the object that is sent th
 ### Message
   - **new.message:** Tells you when a message is received.
     * **- ⚠️Heads up⚠️:** For media messages larger than **8MB** in size, automatic conversion to **base64** is not performed.
-    * Use the **[/chat/base64MediaMessage](http://localhost:3000/codechat/chat-controller-base-64-message-media-by-attr)** route to do the conversion.
+    * Use the **[/chat/base64MediaMessage](https://api.codechat.rest/codechat/chat-controller-base-64-message-media-by-attr)** route to do the conversion.
   - **messages.update:**  Tells you when a message is updated.
     * Example: message ```DELIVERY_AT``` or ```READ```.
   - **message.delete:** Informs when a message is deleted
