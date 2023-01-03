@@ -17,7 +17,7 @@
 <font size='3'>It is a high performance scalable API that uses http requests to communicate with Whatsaap; as per the documentation below.</font>
 
 This code abstracts the functionality of the **[baileys](https://github.com/adiwajshing/Baileys)** library to http format, which control whatsapp functions.
-With **[code-chat](https://api.codechat.dev/v1/docs)** you can create multiservice chats, service bots or any other system that uses whatsapp.
+With **[code-chat](https://api.codechat.rest)** you can create multiservice chats, service bots orany other system that uses whatsapp.
 With this code you don't need to know the javascript for **[nodejs](https://nodejs.org/pt-br/)**, just start the server and make the requests of the language that you feel most comfortable.
 
 Requests return: <strong>JSON</strong>
